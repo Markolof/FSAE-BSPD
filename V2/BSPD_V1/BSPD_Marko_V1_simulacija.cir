@@ -1,0 +1,80 @@
+.title KiCad schematic
+.model __D6 D
+.model __D2 D
+.model __D1 D
+.model __D9 D
+TP4 __TP4
+C12 Net-_C12-Pad1_ GND 10n
+R9 Net-_C12-Pad1_ BPS 1k
+R10 Net-_C12-Pad1_ GND 100k
+R11 Net-_R11-Pad1_ GND 51k
+R22 Net-_R18-Pad2_ GND 10k
+RV2 __RV2
+R20 Net-_C5-Pad1_ TPS 1k
+C5 Net-_C5-Pad1_ GND 10n
+R6 Net-_R5-Pad2_ GND 10k
+R4 Net-_R23-Pad1_ GND 51k
+TP9 __TP9
+R17 Net-_C5-Pad1_ GND 100k
+RV1 __RV1
+C2 +12V GND 100n
+C9 TPS_OUT GND 15p
+R2 +5V BPS_OUT 10k
+C8 Net-_U6-DISCHARGE_ GND 10u
+R21 +5V Net-_U6-DISCHARGE_ 910k
+R24 +5V Trig_Fault 100k
+R7 Net-_C14-Pad1_ GND 100k
+C14 Net-_C14-Pad1_ GND 10n
+R29 Net-_C14-Pad1_ TPS 1k
+TP1 __TP1
+C6 GND +5V 100n
+C1 +12V GND 100n
+U1 __U1
+U2 __U2
+R18 +5V Net-_R18-Pad2_ 100k
+R25 Net-_R11-Pad1_ BPS_OUT 100k
+C13 BPS_OUT GND 15p
+R3 +5V TPS_OUT 10k
+R23 Net-_R23-Pad1_ TPS_OUT 100k
+R5 +5V Net-_R5-Pad2_ 100k
+U3 __U3
+D6 Net-_D6-A_ Net-_D6-K_ __D6
+D7 __D7
+J2 __J2
+D2 Net-_D2-A_ BSPD_F __D2
+C4 +12V GND 100n
+R15 Net-_R15-Pad1_ GND 51k
+R14 Net-_R14-Pad1_ GND 100k
+R19 +5V Net-_R14-Pad1_ 100k
+RV4 __RV4
+R16 Net-_C15-Pad1_ GND 10k
+TP2 __TP2
+R30 BPS Net-_C15-Pad1_ 1k
+C15 Net-_C15-Pad1_ GND 10n
+R26 Net-_U3-1Y_ Net-_Q2-B_ 10k
+C3 +5V GND 100n
+Q2 __Q2
+R27 Trig_Fault +5V 10k
+R28 +12V NO 10k
+K1 __K1
+R1 GND Trig_Fault 10k
+Q1 __Q1
+R32 Net-_R15-Pad1_ BSPD_F 100k
+U6 __U6
+C7 GND Net-_U6-CONTROL_VOLTAGE_ 10n
+R12 +5V Net-_R12-Pad2_ 100k
+R13 Net-_R12-Pad2_ GND 10k
+R8 Net-_R31-Pad1_ GND 51k
+RV3 __RV3
+U4 __U4
+D1 Net-_D1-A_ BSPD_F __D1
+R31 Net-_R31-Pad1_ BSPD_F 100k
+J1 __J1
+TP3 __TP3
+D8 __D8
+D9 +5V Net-_D8-K_ __D9
+TP6 __TP6
+C11 Net-_D8-K_ GND 0.33u
+C10 +5V GND 0.1u
+U7 __U7
+.end

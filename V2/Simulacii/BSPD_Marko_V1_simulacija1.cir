@@ -1,0 +1,131 @@
+* BSPD (Brake System Plausibility Device) - Simplified Version
+* Triggers when TPS > 20% AND BPS < 80%
+* Relay closes immediately, 10s timer starts
+
+.title BSPD_Circuit
+
+*===============================================================================
+* POWER SUPPLIES
+*===============================================================================
+V_12V +12V 0 DC 12
+V_5V +5V 0 DC 5
+
+*===============================================================================
+* INPUT SIGNALS - Realistic BSPD Test Scenario
+*===============================================================================
+* BPS starts at 0V (no brake), stays at 0V (always below 80% = 4V threshold)
+V_BPS BPS 0 PWL(0 0 100 0)
+
+* TPS starts at 0V, jumps to 3V at 15ms and stays there (above 20% = 1V threshold)
+V_TPS TPS 0 PWL(0 0 14.9m 0 15m 3 100 3)
+
+*===============================================================================
+* TPS THRESHOLD DETECTOR (20% = 1V)
+*===============================================================================
+* Reference voltage: 1V (20% of 5V)
+R5 +5V TPS_REF 80k
+R6 TPS_REF 0 20k
+
+* Input filtering
+R_TPS_IN TPS TPS_FILT 1k
+C_TPS TPS_FILT 0 100n
+
+* Comparator
+ETPS TPS_HIGH 0 VALUE={IF(V(TPS_FILT)>V(TPS_REF), 5, 0)}
+R_TPS_OUT TPS_HIGH 0 10k
+
+*===============================================================================
+* BPS THRESHOLD DETECTOR (80% = 4V)
+*===============================================================================
+* Reference voltage: 4V (80% of 5V)
+R18 +5V BPS_REF 20k
+R22 BPS_REF 0 80k
+
+* Input filtering
+R_BPS_IN BPS BPS_FILT 1k
+C_BPS BPS_FILT 0 100n
+
+* Inverted comparator (HIGH when BPS < 80%)
+EBPS BPS_LOW 0 VALUE={IF(V(BPS_FILT)<V(BPS_REF), 5, 0)}
+R_BPS_OUT BPS_LOW 0 10k
+
+*===============================================================================
+* AND GATE - FAULT DETECTION
+*===============================================================================
+EAND FAULT_RAW 0 VALUE={IF(V(TPS_HIGH)>2.5 & V(BPS_LOW)>2.5, 5, 0)}
+R_FAULT FAULT_RAW FAULT_SIG 1k
+C_FAULT FAULT_SIG 0 10n
+
+*===============================================================================
+* 10 SECOND TIMER (RC-based with comparator)
+*===============================================================================
+* Charging circuit: T = R * C = 910k * 11uF  10 seconds
+R_TIMER FAULT_SIG TIMER_CAP 910k
+C_TIMER TIMER_CAP 0 11u
+R_TIMER_LEAK TIMER_CAP 0 10Meg
+
+* Threshold comparator (triggers at 3.3V)
+ETIMER TIMER_OUT 0 VALUE={IF(V(TIMER_CAP)>3.3, 5, 0)}
+R_TIMER_OUT TIMER_OUT 0 10k
+
+*===============================================================================
+* RELAY DRIVER
+*===============================================================================
+* Immediate fault trigger
+R_BASE1 FAULT_SIG RELAY_BASE 10k
+R_BASE2 RELAY_BASE 0 10k
+
+* Driver transistor
+Q_RELAY RELAY_COIL RELAY_BASE 0 Q2N2222
+R_Q_BASE RELAY_BASE 0 47k
+
+* Relay coil
+L_COIL +12V RELAY_COIL 100m
+R_COIL RELAY_COIL 0 100
+
+* Flyback diode
+D_FLYBACK RELAY_COIL +12V DMOD
+
+* Relay output (NO contact)
+* HIGH = relay open, LOW = relay closed
+E_RELAY_OUT NO 0 VALUE={IF(V(RELAY_COIL)>1, 0, 12)}
+R_NO NO 0 10k
+
+*===============================================================================
+* TIMER SHUTDOWN (disconnects relay after 10s)
+*===============================================================================
+* After timer expires, pull relay base low
+Q_SHUTDOWN RELAY_BASE TIMER_OUT 0 Q2N2222
+R_SHUTDOWN TIMER_OUT 0 47k
+
+*===============================================================================
+* TEST POINTS
+*===============================================================================
+R_TP1 TPS_HIGH TP_TPS_HIGH 1
+R_TP2 BPS_LOW TP_BPS_LOW 1
+R_TP3 FAULT_SIG TP_FAULT 1
+R_TP4 TIMER_CAP TP_TIMER_CAP 1
+R_TP5 TIMER_OUT TP_TIMER_OUT 1
+
+*===============================================================================
+* DECOUPLING
+*===============================================================================
+C_DEC1 +12V 0 100n
+C_DEC2 +5V 0 100n
+
+*===============================================================================
+* MODELS
+*===============================================================================
+.model DMOD D(Is=1e-14 Rs=0.1 N=1.7)
+
+.model Q2N2222 NPN(Is=14.34f Xti=3 Eg=1.11 Vaf=74.03 Bf=255.9 Ne=1.307
++ Ise=14.34f Ikf=0.2847 Xtb=1.5 Br=6.092 Nc=2 Isc=0 Ikr=0 Rc=1
++ Cjc=7.306p Mjc=0.3416 Vjc=0.75 Fc=0.5 Cje=22.01p Mje=0.377 Vje=0.75
++ Tr=46.91n Tf=411.1p Itf=0.6 Vtf=1.7 Xtf=3 Rb=10)
+
+*===============================================================================
+* ANALYSIS
+*===============================================================================
+.tran 0 15 0 10u
+
+.end
