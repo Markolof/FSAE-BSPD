@@ -1,8 +1,0 @@
-(sym_lib_table
-  (version 7)
-  (lib (name "SN74HC27NE4")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V1/BSPD_2025_V2/KiCADv6/SN74HC27NE4.kicad_sym")(options "")(descr ""))
-  (lib (name "NE555N")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V1/BSPD_2025_V2/KiCADv6/NE555N.kicad_sym")(options "")(descr ""))
-  (lib (name "LM358N_NOPB")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V3/Snapeda downloads/LM358N_NOPB/LM358N_NOPB.kicad_sym")(options "")(descr ""))
-  (lib (name "2026-03-14_18-27-21")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V3/Snapeda downloads/ul_NC6-P107-08/KiCADv6/2026-03-14_18-27-21.kicad_sym")(options "")(descr ""))
-  (lib (name "IRF9540")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V3/Snapeda downloads/IRF9540/IRF9540.kicad_sym")(options "")(descr ""))
-)

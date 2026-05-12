@@ -1,6 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "LM358N_NOPB")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V3/Snapeda downloads/LM358N_NOPB")(options "")(descr ""))
-  (lib (name "footprints")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V3/Snapeda downloads/ul_NC6-P107-08/KiCADv6/footprints.pretty")(options "")(descr ""))
-  (lib (name "IRF9540")(type "KiCad")(uri "C:/Users/Marko/Desktop/MES RACING/V3/Snapeda downloads/IRF9540")(options "")(descr ""))
-)
