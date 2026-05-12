@@ -1,0 +1,1 @@
+[('U8', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Package_DIP.3dshapes\\CERDIP-8_W7.62mm_SideBrazed_LongPads_Socket.step'), ('U6', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Package_DIP.3dshapes\\CERDIP-14_W7.62mm_SideBrazed_LongPads_Socket.step')]

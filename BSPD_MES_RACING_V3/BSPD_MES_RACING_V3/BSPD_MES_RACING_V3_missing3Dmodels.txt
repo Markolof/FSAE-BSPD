@@ -1,0 +1,11 @@
+### Missing 3D models - created on 2026-05-09 15:37
+### Printed by checking_3D_models plugin
+Board file: C:/Users/Marko/Desktop/MES RACING/V3/BSPD_MES_RACING_V3/BSPD_MES_RACING_V3.kicad_pcb
+3D missing models written to:
+C:\Users\Marko\Desktop\MES RACING\V3\BSPD_MES_RACING_V3\BSPD_MES_RACING_V3_missing3Dmodels.txt
+-------
+('U8', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Package_DIP.3dshapes\\CERDIP-8_W7.62mm_SideBrazed_LongPads_Socket.step')
+('U6', 'C:\\Program Files\\KiCad\\9.0\\share\\kicad\\3dmodels\\Package_DIP.3dshapes\\CERDIP-14_W7.62mm_SideBrazed_LongPads_Socket.step')
+-------
+NUM of 3D missing models:2
+checked extensions ['.stp', '.step', '.stpZ']
